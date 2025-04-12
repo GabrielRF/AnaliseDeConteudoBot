@@ -1,3 +1,4 @@
+[![Deploy](https://github.com/GabrielRF/AnaliseDeConteudoBot/actions/workflows/deploy.yml/badge.svg)](https://github.com/GabrielRF/AnaliseDeConteudoBot/actions/workflows/deploy.yml)
 <img align="right" alt="AnaliseDeConteudoBot" width="30%" height="auto" src="https://blog.gabrf.com/assets/img/AnaliseDeConteudoBot.jpg">
 
 ### Analise de Conteúdo Bot
