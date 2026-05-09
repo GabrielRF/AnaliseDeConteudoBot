@@ -169,6 +169,29 @@ def moderate_image(message):
         except:
             pass
 
+@bot.message_handler(chat_types=['group', 'supergroup'], content_types=['sticker'])
+@bot.edited_message_handler(chat_types=['group', 'supergroup'], content_types=['sticker'])
+def moderate_sticker(message):
+    if str(message.chat.id) not in ALLOWED_GROUPS:
+        return
+    admins = get_admins(message.chat.id)
+    if message.from_user.id in admins:
+        return
+    photo_url = f'https://api.telegram.org/file/bot{TOKEN}/{bot.get_file(message.sticker.file_id).file_path}'
+    try:
+        result = moderate_content(message.caption, photo_url)
+    except:
+        result = 0
+    dest = []
+    if result:
+        for admin in admins:
+            notify(message, admin, result)
+        react_to_message(message.chat.id, message.message_id)
+        try:
+            bot.delete_message(message.chat.id, message.message_id)
+        except:
+            pass
+
 @bot.message_handler(chat_types=['group', 'supergroup'], content_types=['text'])
 @bot.edited_message_handler(chat_types=['group', 'supergroup'], content_types=['text'])
 def cmd_magic(message):
