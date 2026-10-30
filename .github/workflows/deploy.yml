@@ -16,6 +16,6 @@ jobs:
         username: ${{ secrets.USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
         command: |
-          cd /usr/local/bin/AnaliseDeConteudoBot/
+          cd /root/Git/AnaliseDeConteudoBot
           git pull origin main
           systemctl restart tg_analiseconteudo
